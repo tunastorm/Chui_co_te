@@ -1,0 +1,56 @@
+from random import randint 
+
+def make_line(stop, maximum):
+    line = ''
+    for _ in range(stop):
+        line += '{} '.format(randint(1,maximum))
+    line.rstrip(' ')
+    return line
+
+N, M = randint(1, 10), randint(1, 10)
+print(N, M)
+
+line_list = []
+first_line = f'{N} {M}'
+for i in range(N):
+    line = make_line(M, 10000)
+    line_list.append(line)
+
+result = 0
+''' 풀이 1
+for line in line_list:
+    line = sorted(map(int,line.split()))
+    print(line)
+    if result == 0:
+        result = line[0]
+    elif result < line[0]:
+        result = line[0] 
+'''
+for line in line_list:
+    line = map(int, line.split())
+    minimum = min(line)
+    if result == 0:
+        result = minimum
+    elif result < minimum:
+        result = minimum 
+
+
+'''
+def checker(check_string): 
+    value = 0
+    for i in check_string:
+        for number in num_table:
+            if int(i) == number:
+                value += number
+    return value
+
+value_list = []
+for line in line_list:
+    print(line)
+    line = list(map(checker, line.split()))
+    line.sort()
+    value_list.append(line)
+print(value_list)    
+'''
+
+print(result)
